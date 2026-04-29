@@ -1,10 +1,16 @@
-{{ config(materialized='view') }}
-
+{{ config(
+materialized='incremental',
+unique_key='order_id',
+incremental_strategy='merge'
+) }}
 with 
 
 source as (
 
     select * from {{ source('POSGRE', 'POSGRE_ORDERS') }}
+    {% if is_incremental() %}
+    WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }})
+    {% endif %}
 
 ),
 
