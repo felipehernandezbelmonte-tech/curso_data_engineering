@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+
+  - name: google_sheet # name of the source 
+    schema: BRONZE_GOOGLE # this is the schema our raw data lives in
+    database: DB21_BRONZE_DB # this is the name of our database 
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false 
+ 
+
+    tables:
+    
+      - name: GOOGLE_SHEET 
+        columns:
+          - name: _row
+          - name: product_id
+          - name: quantity
+          - name: month
+          - name: _fivetran_synced

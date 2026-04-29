@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+
+  - name: POSGRE # name of the source 
+    schema: BRONZE_POSGRE # this is the schema our raw data lives in
+    database: DB21_BRONZE_DB # this is the name of our database 
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false 
+
+
+    tables:
+    
+      - name: POSGRE_ADDRESSES 
+        columns:
+          - name: _address_id
+          - name: zipcode
+          - name: country
+          - name: address
+          - name: state
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+
+      - name: POSGRE_ORDERITEMS 
+        columns:
+          - name: _order_id
+          - name: _product_id
+          - name: quantity
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+  
+      - name: POSGRE_ORDERS 
+        columns:
+          - name: _order_id
+          - name: shipping_service
+          - name: shipping_cost
+          - name: _address_id
+          - name: created_at
+          - name: _promo_id
+          - name: estimated_delivery_at
+          - name: order_cost
+          - name: _user_id
+          - name: order_total
+          - name: delivered_at
+          - name: tracking_id
+          - name: status
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+  
+      - name: POSGRE_PRODUCTS 
+        columns:
+          - name: _product_id
+          - name: price
+          - name: name
+          - name: inventory
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+
+      - name: POSGRE_PROMOS 
+        columns:
+          - name: _promo_id
+          - name: discount
+          - name: status
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+
+      - name: POSGRE_USER 
+        columns:
+          - name: _user_id
+          - name: update_at
+          - name: address_id
+          - name: last_name
+          - name: created_at
+          - name: phone_number
+          - name: total_orders
+          - name: first_name
+          - name: email
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
